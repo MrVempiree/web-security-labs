@@ -1,0 +1,4 @@
+code=$?
+if [ "$code" -eq 0 ]; then
+  echo "::error::boom"
+fi
