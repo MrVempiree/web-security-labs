@@ -1,0 +1,19 @@
+
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: ${{ matrix.node }}
+
+      # Intentionally no `npm ci` / `npm install` step: this project has zero
+      # dependencies. If that ever changes, add the install step here rather
+      # than letting a lockfile drift unnoticed.
+
+      - name: Verify the project has no runtime dependencies
+        run: |
+          if [ -d node_modules ]; then
+            echo "::error::node_modules exists but this project should have no dependencies"
+            exit 1
+          fi
+
+      - name: Run tests
+        run: npm test
