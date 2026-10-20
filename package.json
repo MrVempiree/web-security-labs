@@ -1,0 +1,27 @@
+{
+  "name": "web-security-labs",
+  "version": "0.1.0",
+  "description": "Reproducible web application security labs: each one pairs a working vulnerable implementation with a remediated one and automated tests that prove the difference.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "scripts": {
+    "test": "node --test tests/",
+    "start": "node src/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "web-security",
+    "application-security",
+    "penetration-testing",
+    "owasp",
+    "xss",
+    "sql-injection",
+    "broken-access-control",
+    "security-education"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
