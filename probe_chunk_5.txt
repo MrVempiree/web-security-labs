@@ -1,0 +1,15 @@
+        run: |
+          set +e
+          HOST=0.0.0.0 node src/server.ts > out.log 2>&1
+          code=$?
+          set -e
+          cat out.log
+          if [ "$code" -eq 0 ]; then
+            echo "::error::server started on 0.0.0.0 — the loopback safety policy is broken"
+            exit 1
+          fi
+          if ! grep -q "STARTUP REFUSED" out.log; then
+            echo "::error::expected a STARTUP REFUSED message"
+            exit 1
+          fi
+          echo "safety policy held: wildcard bind refused with exit code $code"
