@@ -1,0 +1,18 @@
+
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af  # v4.1.0
+        with:
+          node-version: "24"
+
+      # TypeScript is the only dev-time tool, installed here rather than kept as
+      # a project dependency, so the zero-dependency property above still holds.
+      - name: Install TypeScript (ephemeral)
+        run: npm install --no-save --no-package-lock typescript@5
